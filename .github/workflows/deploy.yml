@@ -19,16 +19,15 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Uninstall old Databricks CLI (if any)
+      - name: Uninstall any old Databricks CLI (if installed)
         run: |
           pip uninstall -y databricks-cli || true
 
-      - name: Install latest Databricks CLI (new version)
+      - name: Install latest Databricks CLI (v0.200+)
         run: |
           pip install --upgrade databricks-cli
-
-      - name: Verify Databricks CLI version
-        run: databricks --version
+          databricks --version
+          databricks bundle --help
 
       - name: Deploy Databricks Asset Bundle
         env:
