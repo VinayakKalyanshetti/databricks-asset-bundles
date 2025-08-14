@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  vinayak_cicd_test_job:
+  git_cicd_test_pipeline:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,4 +34,4 @@ jobs:
         env:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
-        run: databricks bundle deploy
+        run: databricks bundle deploy --auto-approve

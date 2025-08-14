@@ -1,8 +1,8 @@
 # The main pipeline for dab_project
 resources:
   pipelines:
-    vinayak_cicd_test_pipeline:
-      name: vinayak_cicd_test_pipeline
+    git_cicd_test_pipeline:
+      name: git_cicd_test_pipeline
       catalog: workspace
       schema: dab_project_${bundle.target}
       serverless: true
