@@ -1,4 +1,4 @@
-name: Deploy to Databricks
+name: Deploy Databricks Asset Bundle
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
 
 jobs:
   deploy:
+    name: Deploy to Databricks
     runs-on: ubuntu-latest
 
     steps:
@@ -18,17 +19,20 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Install Databricks CLI
+      - name: Uninstall old Databricks CLI (if any)
         run: |
-          pip install databricks-cli databricks-sdk
+          pip uninstall -y databricks-cli || true
 
-      - name: Configure Databricks CLI
+      - name: Install latest Databricks CLI (new version)
         run: |
-          mkdir -p ~/.databricks
-          echo "[default]" > ~/.databricks/config
-          echo "host = ${{ secrets.DATABRICKS_HOST }}" >> ~/.databricks/config
-          echo "token = ${{ secrets.DATABRICKS_TOKEN }}" >> ~/.databricks/config
+          pip install --upgrade databricks-cli
+
+      - name: Verify Databricks CLI version
+        run: databricks --version
 
       - name: Deploy Databricks Asset Bundle
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
         run: |
           databricks bundle deploy
