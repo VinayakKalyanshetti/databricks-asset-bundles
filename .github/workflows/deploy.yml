@@ -7,21 +7,16 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to Databricks
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - name: Install latest Databricks CLI (new version)
+      - name: Install latest Databricks CLI (standalone binary)
+        shell: bash
         run: |
-          pip install databricks  # ✅ Not databricks-cli
+          curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
           databricks --version
           databricks bundle --help
 
@@ -29,5 +24,4 @@ jobs:
         env:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
-        run: |
-          databricks bundle deploy
+        run: databricks bundle deploy
