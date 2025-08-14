@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  git_cicd_test_job:
+  bia_dbx_test_job:
     runs-on: ubuntu-latest
 
     steps:

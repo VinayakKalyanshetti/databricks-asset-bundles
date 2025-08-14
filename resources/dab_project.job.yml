@@ -1,8 +1,8 @@
 # The main job for dab_project.
 resources:
   jobs:
-    git_cicd_test_job:
-      name: git_cicd_test_job
+    bia_dbx_test_job:
+      name: bia_dbx_test_job
 
       trigger:
         # Run this job every day, exactly one day from the last run; see https://docs.databricks.com/api/workspace/jobs/create#trigger
