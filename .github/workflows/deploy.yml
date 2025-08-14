@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  git_cicd_test_pipeline:
+  git_cicd_test_job:
     runs-on: ubuntu-latest
 
     steps:
