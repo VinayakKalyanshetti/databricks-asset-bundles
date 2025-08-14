@@ -23,7 +23,7 @@ resources:
           depends_on:
             - task_key: notebook_task
           pipeline_task:
-            pipeline_id: ${resources.pipelines.git_cicd_test_pipeline.id}
+            pipeline_id: ${resources.pipelines.bia_DLT_test_pipeline.id}
 
         - task_key: main_task
           depends_on:
