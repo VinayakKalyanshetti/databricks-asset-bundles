@@ -10,8 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
       - name: Install latest Databricks CLI (standalone binary)
         shell: bash
@@ -19,6 +24,11 @@ jobs:
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
           databricks --version
           databricks bundle --help
+
+      - name: Install Python dependencies for bundle
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
       - name: Deploy Databricks Asset Bundle
         env:
