@@ -1,8 +1,8 @@
 # The main pipeline for dab_project
 resources:
   pipelines:
-    bia_DLT_test_pipeline_2:
-      name: bia_DLT_test_pipeline_2
+    bia_DLT_pipeline_CICD_test_final:
+      name: bia_DLT_pipeline_CICD_test_final
       catalog: workspace
       schema: dab_project_${bundle.target}
       serverless: true
