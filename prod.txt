@@ -6,4 +6,5 @@ This is a dummy prod file for testing file-level permissions.
 --changes made 4
 --changes made 5
 --changes made 6
+Final changes
 
